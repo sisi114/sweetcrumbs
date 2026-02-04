@@ -49,9 +49,9 @@
     <div class="max-w-6xl mx-auto px-6">
       <div class="swiper rounded-3xl overflow-hidden">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Chocolate+Cake+Delight" alt="Chocolate Cake"></div>
-          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Fresh+Bread+Every+Morning" alt="Fresh Bread"></div>
-          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Cookies+Galore" alt="Cookies"></div>
+          <div class="swiper-slide"><img src="https://placekitten.com/1200/500" alt="Chocolate Cake"></div>
+          <div class="swiper-slide"><img src="https://placekitten.com/1201/500" alt="Fresh Bread"></div>
+          <div class="swiper-slide"><img src="https://placekitten.com/1202/500" alt="Cookies"></div>
         </div>
         <div class="swiper-pagination"></div>
       </div>
@@ -75,9 +75,7 @@
       <button onclick="filterCategory('Breads')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Breads</button>
       <button onclick="filterCategory('Pastries')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Pastries</button>
     </div>
-    <div id="products-grid" class="grid md:grid-cols-3 gap-8">
-      <!-- Product items inserted by JS -->
-    </div>
+    <div id="products-grid" class="grid md:grid-cols-3 gap-8"></div>
   </section>
 
   <!-- Cart / Order Form -->
@@ -103,18 +101,18 @@
 
   <script>
     const products = [
-      {name:'Chocolate Cake', price:15, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Chocolate+Cake'},
-      {name:'Red Velvet Cupcake', price:4.5, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Red+Velvet+Cupcake'},
-      {name:'Carrot Cake', price:14, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Carrot+Cake'},
-      {name:'Chocolate Chip Cookie', price:2.5, category:'Cookies', img:'https://via.placeholder.com/300x200?text=Chocolate+Chip+Cookie'},
-      {name:'Macaron Set', price:12, category:'Cookies', img:'https://via.placeholder.com/300x200?text=Macaron+Set'},
-      {name:'Banana Bread', price:6, category:'Breads', img:'https://via.placeholder.com/300x200?text=Banana+Bread'},
-      {name:'Butter Croissant', price:4, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Butter+Croissant'},
-      {name:'Cinnamon Roll', price:4, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Cinnamon+Roll'},
-      {name:'Lemon Tart', price:5, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Lemon+Tart'},
-      {name:'Pumpkin Pie', price:10, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Pumpkin+Pie'},
-      {name:'Blueberry Muffin', price:3.5, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Blueberry+Muffin'},
-      {name:'Strawberry Shortcake', price:12, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Strawberry+Shortcake'}
+      {name:'Chocolate Cake', price:15, category:'Cakes', img:'https://placekitten.com/300/200'},
+      {name:'Red Velvet Cupcake', price:4.5, category:'Cakes', img:'https://placekitten.com/301/200'},
+      {name:'Carrot Cake', price:14, category:'Cakes', img:'https://placekitten.com/302/200'},
+      {name:'Chocolate Chip Cookie', price:2.5, category:'Cookies', img:'https://placekitten.com/303/200'},
+      {name:'Macaron Set', price:12, category:'Cookies', img:'https://placekitten.com/304/200'},
+      {name:'Banana Bread', price:6, category:'Breads', img:'https://placekitten.com/305/200'},
+      {name:'Butter Croissant', price:4, category:'Pastries', img:'https://placekitten.com/306/200'},
+      {name:'Cinnamon Roll', price:4, category:'Pastries', img:'https://placekitten.com/307/200'},
+      {name:'Lemon Tart', price:5, category:'Pastries', img:'https://placekitten.com/308/200'},
+      {name:'Pumpkin Pie', price:10, category:'Cakes', img:'https://placekitten.com/309/200'},
+      {name:'Blueberry Muffin', price:3.5, category:'Pastries', img:'https://placekitten.com/310/200'},
+      {name:'Strawberry Shortcake', price:12, category:'Cakes', img:'https://placekitten.com/311/200'}
     ];
 
     function renderProducts(filter='All'){
