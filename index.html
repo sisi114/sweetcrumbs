@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sweet Crumbs Bakery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css" />
+  <script>
+    let cart = [];
+    function addToCart(name, price) {
+      cart.push({name, price});
+      updateCart();
+    }
+    function updateCart() {
+      const cartContainer = document.getElementById('cart-items');
+      cartContainer.innerHTML = '';
+      let total = 0;
+      cart.forEach((item, index) => {
+        total += item.price;
+        const el = document.createElement('div');
+        el.className = 'flex justify-between mb-2';
+        el.innerHTML = `${item.name} - $${item.price.toFixed(2)} <button class='text-red-500 ml-2' onclick='removeItem(${index})'>Remove</button>`;
+        cartContainer.appendChild(el);
+      });
+      document.getElementById('cart-total').innerText = `$${total.toFixed(2)}`;
+    }
+    function removeItem(index) {
+      cart.splice(index, 1);
+      updateCart();
+    }
+    function submitOrder() {
+      if(cart.length === 0){ alert('Your cart is empty!'); return; }
+      alert('Order submitted!\nDetails:\n' + cart.map(i=>`${i.name}: $${i.price.toFixed(2)}`).join('\n'));
+      cart = [];
+      updateCart();
+      document.getElementById('order-form').reset();
+    }
+    window.addEventListener('DOMContentLoaded', ()=>{
+      const swiper = new Swiper('.swiper', { slidesPerView: 1, loop: true, autoplay: { delay: 3000 }, pagination: { el: '.swiper-pagination', clickable: true } });
+    });
+  </script>
+</head>
+<body class="bg-rose-50 text-neutral-900">
+
+  <!-- Hero / Carousel -->
+  <section class="py-12">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="swiper rounded-3xl overflow-hidden">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Chocolate+Cake+Delight" alt="Chocolate Cake"></div>
+          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Fresh+Bread+Every+Morning" alt="Fresh Bread"></div>
+          <div class="swiper-slide"><img src="https://via.placeholder.com/1200x500?text=Cookies+Galore" alt="Cookies"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="max-w-6xl mx-auto px-6 py-16 text-center">
+    <h2 class="text-3xl font-bold mb-6">About Sweet Crumbs Bakery</h2>
+    <p class="text-lg mb-4">At Sweet Crumbs Bakery, we bake fresh, delicious treats every day. From classic pastries to seasonal specialties, our goal is simple: make your taste buds happy.</p>
+    <p class="text-lg">Handcrafted with love, each product is a little piece of joy.</p>
+  </section>
+
+  <!-- Products / Categories -->
+  <section class="max-w-6xl mx-auto px-6 py-16">
+    <h2 class="text-3xl font-bold mb-10 text-center">Our Treats</h2>
+    <div class="flex justify-center mb-8 space-x-4">
+      <button onclick="filterCategory('All')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">All</button>
+      <button onclick="filterCategory('Cakes')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Cakes</button>
+      <button onclick="filterCategory('Cookies')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Cookies</button>
+      <button onclick="filterCategory('Breads')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Breads</button>
+      <button onclick="filterCategory('Pastries')" class="px-4 py-2 bg-rose-400 text-white rounded hover:bg-rose-500">Pastries</button>
+    </div>
+    <div id="products-grid" class="grid md:grid-cols-3 gap-8">
+      <!-- Product items inserted by JS -->
+    </div>
+  </section>
+
+  <!-- Cart / Order Form -->
+  <section class="bg-rose-100 py-16">
+    <div class="max-w-4xl mx-auto px-6">
+      <h2 class="text-3xl font-bold mb-6">Your Cart</h2>
+      <div id="cart-items" class="mb-4"></div>
+      <p class="font-semibold mb-6">Total: <span id="cart-total">$0.00</span></p>
+
+      <form id="order-form" onsubmit="event.preventDefault(); submitOrder();" class="space-y-4">
+        <input type="text" placeholder="Full Name" required class="w-full p-2 rounded border">
+        <input type="email" placeholder="Email" required class="w-full p-2 rounded border">
+        <input type="text" placeholder="Pickup or Delivery" required class="w-full p-2 rounded border">
+        <button type="submit" class="bg-rose-400 text-white px-6 py-2 rounded hover:bg-rose-500">Submit Order</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center text-sm text-neutral-500 py-10">
+    © 2026 Sweet Crumbs Bakery · All rights reserved
+  </footer>
+
+  <script>
+    const products = [
+      {name:'Chocolate Cake', price:15, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Chocolate+Cake'},
+      {name:'Red Velvet Cupcake', price:4.5, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Red+Velvet+Cupcake'},
+      {name:'Carrot Cake', price:14, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Carrot+Cake'},
+      {name:'Chocolate Chip Cookie', price:2.5, category:'Cookies', img:'https://via.placeholder.com/300x200?text=Chocolate+Chip+Cookie'},
+      {name:'Macaron Set', price:12, category:'Cookies', img:'https://via.placeholder.com/300x200?text=Macaron+Set'},
+      {name:'Banana Bread', price:6, category:'Breads', img:'https://via.placeholder.com/300x200?text=Banana+Bread'},
+      {name:'Butter Croissant', price:4, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Butter+Croissant'},
+      {name:'Cinnamon Roll', price:4, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Cinnamon+Roll'},
+      {name:'Lemon Tart', price:5, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Lemon+Tart'},
+      {name:'Pumpkin Pie', price:10, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Pumpkin+Pie'},
+      {name:'Blueberry Muffin', price:3.5, category:'Pastries', img:'https://via.placeholder.com/300x200?text=Blueberry+Muffin'},
+      {name:'Strawberry Shortcake', price:12, category:'Cakes', img:'https://via.placeholder.com/300x200?text=Strawberry+Shortcake'}
+    ];
+
+    function renderProducts(filter='All'){
+      const grid = document.getElementById('products-grid');
+      grid.innerHTML = '';
+      products.filter(p=>filter==='All'||p.category===filter).forEach(p=>{
+        const div = document.createElement('div');
+        div.className = 'bg-white rounded-2xl shadow p-6';
+        div.innerHTML = `<img src='${p.img}' alt='${p.name}' class='rounded mb-4'><h3 class='text-xl font-semibold mb-2'>${p.name}</h3><p class='mb-2'>${p.category}</p><p class='mb-2 font-bold'>$${p.price.toFixed(2)}</p><button onclick="addToCart('${p.name}', ${p.price})" class='bg-rose-400 text-white px-4 py-2 rounded hover:bg-rose-500'>Add to Cart</button>`;
+        grid.appendChild(div);
+      });
+    }
+
+    function filterCategory(category){ renderProducts(category); }
+
+    renderProducts();
+  </script>
+
+</body>
+</html>
